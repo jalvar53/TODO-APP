@@ -24,15 +24,6 @@
     "zone.js": "0.8.18"
   },
   "devDependencies": {
-    "@angular/cli": "1.5.3",
-    "@angular/compiler-cli": "5.0.2",
-    "@angular/language-service": "5.0.2",
-    "jasmine": "2.8.0",
-    "jasmine-core": "^2.8.0",
-    "karma": "^1.7.1",
-    "karma-chrome-launcher": "^2.2.0",
-    "karma-jasmine": "^1.1.0",
-    "protractor": "5.2.0",
     "ts-node": "3.3.0",
     "tslint": "5.8.0",
     "typescript": "2.6.1"
