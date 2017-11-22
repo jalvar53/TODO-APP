@@ -1,9 +1,3 @@
 {
-    "extends": "tslint:recommended",
-    "rules": {
-        "max-line-length": {
-            "options": [120]
-        }
-    },
-    "no-consecutive-blank-lines": false
+    "extends": "airbnb-standard"
 }
