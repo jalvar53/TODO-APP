@@ -1,0 +1,32 @@
+# Angular #
+/dist
+/tmp
+/app/**/*.js
+/app/**/*.js.map
+
+# dependencies
+/node_modules
+
+# misc
+npm-debug.log
+
+# e2e
+/e2e/*.js
+/e2e/*.map
+
+# Node #
+logs
+*.log
+npm-debug.log*
+
+# Dependency directories
+node_modules/
+
+# Typescript v1 declaration files
+typings/
+
+# VisualStudioCode #
+.vscode/*
+
+# Windows #
+Thumbs.db
