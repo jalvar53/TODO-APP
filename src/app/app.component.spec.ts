@@ -5,30 +5,27 @@ import { By } from "@angular/platform-browser";
 
 describe('AppComponent created correctly', () => {
 
-  let comp: AppComponent;
-  let fixture: ComponentFixture<AppComponent>;
-  let de: DebugElement;
-  let el: HTMLElement;
+  let component: AppComponent;
+  let componentFixture: ComponentFixture<AppComponent>;
+  let debugElement: DebugElement;
+  let htmlElement: HTMLElement;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [AppComponent]
     })
 
-    fixture = TestBed.createComponent(AppComponent);
-
-    comp = fixture.componentInstance;
-
-    de = fixture.debugElement.query(By.css('h1'));
-    el = de.nativeElement;
+    componentFixture = TestBed.createComponent(AppComponent);
+    component = componentFixture.componentInstance;
   })
 
-  it('Should check if the component exists', () => {
-    expect(comp).toBeDefined();
+  it('Given a main component', () => {
+    it('When creating the component', () => {
+      it('Then, the TODO title have to be in the h1 element'), () => {
+        debugElement = componentFixture.debugElement.query(By.css('h1'));
+        htmlElement = debugElement.nativeElement;
+        expect(htmlElement.textContent).toContain('TODO App');
+      }
+    })
   })
-
-  it('Should have a TODO title', () => {
-    expect(el.textContent).toContain('TODO App');
-  })
-
 })
