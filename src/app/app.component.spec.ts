@@ -8,7 +8,6 @@ describe('AppComponent created correctly', () => {
   let component: AppComponent;
   let componentFixture: ComponentFixture<AppComponent>;
   let debugElement: DebugElement;
-  let htmlElement: HTMLElement;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -23,9 +22,23 @@ describe('AppComponent created correctly', () => {
     it('When creating the component', () => {
       it('Then, the TODO title have to be in the h1 element'), () => {
         debugElement = componentFixture.debugElement.query(By.css('h1'));
-        htmlElement = debugElement.nativeElement;
-        expect(htmlElement.textContent).toContain('TODO App');
+        let h1Element = debugElement.nativeElement;
+        expect(h1Element.textContent).toContain('TODO App');
       }
     })
   })
+
+  it('Given a text input', () => {
+    it('When the user types "Call Susan"', () => {
+      it('Then, it should appear in a list item', () =>{
+        component.addNewtask('Call Susan');
+
+        componentFixture.detectChanges();
+        debugElement = componentFixture.debugElement.query(By.css('li'));
+        let listItem: HTMLElement = debugElement.nativeElement;
+
+        expect(listItem.textContent).toContain('Call Susan');
+      })
+    })
+  });
 })

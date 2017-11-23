@@ -1,1 +1,15 @@
-<h1>TODO App</h1>
+<div class="container">
+    <div class="row">
+        <div class="input-field col s12">
+            <input #task (keyup.enter)="addNewtask(task.value)"
+                placeholder="Add a new task..."  
+                type="text" 
+                ngModel>
+        </div>
+        <ul>
+            <div *ngFor="let task of tasks">
+                <ul>{{task}}</ul>
+            </div>
+        </ul>
+    </div>
+</div>
