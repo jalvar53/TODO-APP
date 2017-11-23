@@ -8,9 +8,17 @@
         "root": "src",
         "index": "index.html",
         "prefix": "app",
-        "main": "main.ts"
+        "main": "main.ts",
+        "test": "test.ts",
+        "tsconfig": "tsconfig.app.json",
+        "testTsconfig": "tsconfig.spec.json"
       }
     ],
+    "test": {
+      "karma": {
+        "config": "./karma.conf.js"
+      }
+    },
     "lint": [
       {
         "files": "src/**/*.ts",
