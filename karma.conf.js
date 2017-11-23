@@ -2,12 +2,11 @@ module.exports = function(config) {
   config.set({
     basePath: '',
     frameworks: ['jasmine', '@angular/cli'],
-    files: [
-    ],
-    exclude: [
-    ],
     preprocessors: {
     },
+    files: [
+      {pattern: 'node_modules/zone.js/dist/zone.js', included: true, watched: true}
+    ],
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
@@ -17,7 +16,7 @@ module.exports = function(config) {
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
-    autoWatch: false,
+    autoWatch: true,
     browsers: ['Chrome'],
     singleRun: false,
     concurrency: Infinity
