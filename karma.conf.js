@@ -4,9 +4,6 @@ module.exports = function(config) {
     frameworks: ['jasmine', '@angular/cli'],
     preprocessors: {
     },
-    files: [
-      {pattern: 'node_modules/zone.js/dist/zone.js', included: true, watched: true}
-    ],
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
