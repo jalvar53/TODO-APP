@@ -8,8 +8,13 @@
                 ngModel>
         </div>
         <ul>
-            <div *ngFor="let task of tasks">
-                <li>{{task}}</li>
+            <div>
+                <li *ngFor="let task of tasks">{{task.name}}
+                    <a class="btn-floating waves-effect waves-light blue">
+                        <i class="tiny material-icons"
+                            (click)="removeTask(task)">remove</i>
+                    </a>
+                </li>
             </div>
         </ul>
     </div>

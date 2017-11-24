@@ -1,7 +1,8 @@
 import { AppComponent } from './app.component';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, ComponentFixtureAutoDetect } from '@angular/core/testing';
 import { DebugElement } from '@angular/core/src/debug/debug_node';
 import { By } from '@angular/platform-browser';
+import { Task } from './model/task.model';
 
 describe('AppComponent created correctly', () => {
 
@@ -30,15 +31,48 @@ describe('AppComponent created correctly', () => {
   });
 
   describe('Given a text input', () => {
-    describe('When the user types "Call Susan2"', () => {
+    describe('When the user types "Call Susan"', () => {
       it('Then, it should appear in a list item', () => {
         component.addNewtask('Call Susan');
 
         componentFixture.detectChanges();
-        debugElement = componentFixture.debugElement.query(By.css('li'));
-        const listItem: HTMLElement = debugElement.nativeElement;
 
-        expect(listItem.textContent).toContain('Call Susan');
+        debugElement = componentFixture.debugElement.query(By.css('li'));
+        const itemList: HTMLElement = debugElement.nativeElement;
+        expect(itemList.textContent).toContain('Call Susan');
+      });
+    });
+  });
+
+  describe('Given a text input', () => {
+    describe('When the user doesn\'t enter anything', () => {
+      it('Then, nothing should be added', () => {
+
+        const tasksBeforeAddedBlank: Task[] = component.tasks.slice(0);
+
+        component.addNewtask('');
+
+        componentFixture.detectChanges();
+
+        expect(component.tasks).toEqual(tasksBeforeAddedBlank);
+      });
+    });
+  });
+
+  describe('Given a task', () => {
+    describe('When the user click on the X next to the task', () => {
+      it('Then, it should remove the task from the view', () => {
+        const taskToRemove = '10AM meeting';
+
+        component.addNewtask(taskToRemove);
+        componentFixture.detectChanges();
+
+        component.removeTask(taskToRemove);
+        componentFixture.detectChanges();
+
+        const removedTask = new Task(taskToRemove, '');
+
+        expect(component.tasks).not.toContain(removedTask);
       });
     });
   });
