@@ -1,21 +1,28 @@
 <div class="container">
-    <h3>TODO App</h3>
+    <div>
+        <h1 class="center-align header">TODOS</h1>
+    </div>
     <div class="row">
-        <div class="input-field col s12">
-            <input #task (keyup.enter)="addNewtask(task.value)"
-                placeholder="Add a new task..."  
-                type="text" 
-                ngModel>
-        </div>
-        <ul>
-            <div>
-                <li *ngFor="let task of tasks">{{task.name}}
-                    <a class="btn-floating waves-effect waves-light blue">
-                        <i class="tiny material-icons"
-                            (click)="removeTask(task)">remove</i>
-                    </a>
-                </li>
+        <div class="col s6 offset-s3 card white">
+            <div class="card-content">
+                <input [(ngModel)]="currentTaskInTextInput"
+                    class="input-field" 
+                    #task (keyup.enter)="addNewtask(task.value)"
+                    placeholder="Add a new task..."  
+                    type="text" 
+                    ngModel>
             </div>
-        </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s6 offset-s3">
+            <ul class="collection">
+                <li class="collection-item" *ngFor="let task of tasks">{{task.name}}
+                        <a class="secondary-content clickable">
+                            <i (click)="removeTask(task)" class="material-icons">remove</i>
+                        </a>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>

@@ -5,15 +5,18 @@ import { isEmpty } from 'underscore';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
+  styleUrls: ['app.component.css'],
 })
 export class AppComponent {
 
   tasks: Array<Task> = [];
+  currentTaskInTextInput: String;
 
   addNewtask (newTaskName: String) {
     const addedTask = new Task(newTaskName, 'Active');
     if (!isEmpty(newTaskName)) {
       this.tasks.push(addedTask);
+      this.currentTaskInTextInput = '';
     }
   }
 
