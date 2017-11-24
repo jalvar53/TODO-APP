@@ -59,8 +59,8 @@ describe('AppComponent created correctly', () => {
     });
   });
 
-  describe('Givena task', () => {
-    describe('When the user clic on the X next to the task', () => {
+  describe('Given a task', () => {
+    describe('When the user click on the X next to the task', () => {
       it('Then, it should remove the task from the view', () => {
         const taskToRemove = '10AM meeting';
 

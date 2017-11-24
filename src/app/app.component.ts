@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Task } from './model/task.model';
+import { isEmpty } from 'underscore';
 
 @Component({
   selector: 'app-root',
@@ -11,21 +12,14 @@ export class AppComponent {
 
   addNewtask (newTaskName: String) {
     const addedTask = new Task(newTaskName, 'Active');
-    if (!this.inputIsEmpty(newTaskName)) {
+    if (!isEmpty(newTaskName)) {
       this.tasks.push(addedTask);
     }
   }
 
   removeTask(taskToRemove: String) {
-    const indexOfTask = this.tasks.findIndex(x => x.name === taskToRemove);
+    const indexOfTask = this.tasks.findIndex(task => task.name === taskToRemove);
     this.tasks.splice(indexOfTask, 1);
-  }
-
-  inputIsEmpty(input: String) {
-    if (input === '') {
-      return true;
-    }
-    return false;
   }
 
 }
