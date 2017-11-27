@@ -39,7 +39,7 @@ describe('AppComponent created correctly', () => {
 
         componentFixture.detectChanges();
 
-        debugElement = componentFixture.debugElement.query(By.css('li'));
+        debugElement = componentFixture.debugElement.query(By.css('.active-tasks-container'));
         const itemList: HTMLElement = debugElement.nativeElement;
         expect(itemList.textContent).toContain('Call Susan');
       });
@@ -50,13 +50,13 @@ describe('AppComponent created correctly', () => {
     describe('When the user doesn\'t enter anything', () => {
       it('Then, nothing should be added', () => {
 
-        const tasksBeforeAddedBlank: Task[] = component.tasks.slice(0);
+        const tasksBeforeAddedBlank: Task[] = component.activatedTasks.slice(0);
 
         component.addNewtask('');
 
         componentFixture.detectChanges();
 
-        expect(component.tasks).toEqual(tasksBeforeAddedBlank);
+        expect(component.activatedTasks).toEqual(tasksBeforeAddedBlank);
       });
     });
   });
@@ -69,12 +69,86 @@ describe('AppComponent created correctly', () => {
         component.addNewtask(taskToRemove);
         componentFixture.detectChanges();
 
-        component.removeTask(taskToRemove);
+        component.removeTaskFromActiveTasks(taskToRemove);
         componentFixture.detectChanges();
 
         const removedTask = new Task(taskToRemove, '');
 
-        expect(component.tasks).not.toContain(removedTask);
+        expect(component.activatedTasks).not.toContain(removedTask);
+      });
+    });
+  });
+
+  describe('Given a task', () => {
+    describe('When the user clicks on the "Completed" button', () => {
+      it('Then, it should add it to the completed task list', () => {
+
+        const taskToComplete = new Task('Do the sales report', 'Active');
+        const taskName = taskToComplete.name;
+        component.addNewtask(taskToComplete.name);
+        componentFixture.detectChanges();
+
+        component.setAsComplete(taskToComplete.name);
+        componentFixture.detectChanges();
+
+        const completedTask = new Task(taskName, 'Completed');
+
+        expect(component.completedTasks).toContain(completedTask);
+      });
+    });
+  });
+
+  describe('Given a task', () => {
+    describe('When the user clicks on the "Active" button', () => {
+      it('Then, it should add it to the Active task list', () => {
+
+        const taskToActivate = new Task('Wash the car', 'Completed');
+        const taskName = taskToActivate.name;
+        component.addNewtask(taskName);
+        component.setAsComplete(taskName);
+        componentFixture.detectChanges();
+
+        component.setAsActive(taskName);
+        componentFixture.detectChanges();
+
+        const activatedTast = new Task(taskName, 'Active');
+
+        expect(component.activatedTasks).toContain(activatedTast);
+      });
+    });
+  });
+
+  describe('Given a task', () => {
+    describe('When the user clicks on the "Delete" button from the Active List', () => {
+      it('Then, it should remove the task from the list', () => {
+
+        let taskToARemove = new Task('Wash the car', 'Active');
+        const taskName = taskToARemove.name;
+        component.addNewtask(taskName);
+        componentFixture.detectChanges();
+
+        taskToARemove = component.removeTaskFromActiveTasks(taskName);
+        componentFixture.detectChanges();
+
+        expect(component.activatedTasks).not.toContain(taskToARemove);
+      });
+    });
+  });
+
+  describe('Given a task', () => {
+    describe('When the user clicks on the "Delete" button from the Completed List', () => {
+      it('Then, it should remove the task from the list', () => {
+
+        let taskToARemove = new Task('Wash the car', 'Active');
+        taskToARemove.setStatus('Completed');
+        const taskName = taskToARemove.name;
+        component.addNewtask(taskName);
+        componentFixture.detectChanges();
+
+        taskToARemove = component.removeTaskFromCompletedTasks(taskName);
+        componentFixture.detectChanges();
+
+        expect(component.completedTasks).not.toContain(taskToARemove);
       });
     });
   });

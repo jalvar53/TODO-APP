@@ -9,20 +9,44 @@ import { isEmpty } from 'underscore';
 })
 export class AppComponent {
 
-  tasks: Array<Task> = [];
+  activatedTasks: Array<Task> = [];
+  completedTasks: Array<Task> = [];
   currentTaskInTextInput: String;
 
-  addNewtask (newTaskName: String) {
+  addNewtask(newTaskName: String) {
     const addedTask = new Task(newTaskName, 'Active');
     if (!isEmpty(newTaskName)) {
-      this.tasks.push(addedTask);
+      this.activatedTasks.push(addedTask);
       this.currentTaskInTextInput = '';
     }
   }
 
-  removeTask(taskToRemove: String) {
-    const indexOfTask = this.tasks.findIndex(task => task.name === taskToRemove);
-    this.tasks.splice(indexOfTask, 1);
+  removeTaskFromActiveTasks(taskToCompleteName: String) {
+    const indexOfTask = this.findIndexOfTaskByName(taskToCompleteName);
+    const taskToComplete = this.activatedTasks.splice(indexOfTask, 1);
+    return taskToComplete[0];
+  }
+
+  removeTaskFromCompletedTasks(taskToActivateName: String) {
+    const indexOfTask = this.findIndexOfTaskByName(taskToActivateName);
+    const taskToActivate = this.completedTasks.splice(indexOfTask, 1);
+    return taskToActivate[0];
+  }
+
+  setAsComplete(completedTaskName: String) {
+    const taskToComplete = this.removeTaskFromActiveTasks(completedTaskName);
+    taskToComplete.setStatus('Completed');
+    this.completedTasks.push(taskToComplete);
+  }
+
+  setAsActive(activatedTaskName: String) {
+    const taskToActivate = this.removeTaskFromCompletedTasks(activatedTaskName);
+    taskToActivate.setStatus('Active');
+    this.activatedTasks.push(taskToActivate);
+  }
+
+  findIndexOfTaskByName(taskName: String) {
+    return this.activatedTasks.findIndex(task => task.name === taskName);
   }
 
 }
