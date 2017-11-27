@@ -1,5 +1,5 @@
 module.exports = function(config) {
-  config.set({
+  const configuration = {
     basePath: '',
     frameworks: ['jasmine', '@angular/cli'],
     preprocessors: {
@@ -9,6 +9,12 @@ module.exports = function(config) {
       require('karma-chrome-launcher'),
       require('@angular/cli/plugins/karma')
     ],
+    customLaunchers: {
+      Chrome_travis_ci: {
+          base: 'Chrome',
+          flags: ['--no-sandbox']
+      }
+    },
     reporters: ['progress'],
     port: 9876,
     colors: true,
@@ -17,5 +23,11 @@ module.exports = function(config) {
     browsers: ['Chrome'],
     singleRun: false,
     concurrency: Infinity
-  })
+  }
+
+  if (process.env.TRAVIS) {
+    configuration.browsers = ['Chrome_travis_ci'];
+  }
+ 
+  config.set(configuration);
 }
