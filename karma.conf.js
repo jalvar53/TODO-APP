@@ -19,9 +19,9 @@ module.exports = function(config) {
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
-    autoWatch: true,
+    autoWatch: Boolean(process.env.WATCH_MODE),
     browsers: ['Chrome'],
-    singleRun: false,
+    singleRun: !Boolean(process.env.WATCH_MODE),
     concurrency: Infinity
   }
 
