@@ -12,7 +12,8 @@
         "test": "test.ts",
         "tsconfig": "tsconfig.app.json",
         "testTsconfig": "tsconfig.spec.json",
-        "polyfills": "polyfills.ts"
+        "polyfills": "polyfills.ts",
+        "styles": ["styles.css"]
       }
     ],
     "test": {
