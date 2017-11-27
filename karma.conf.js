@@ -25,13 +25,9 @@ module.exports = function(config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: Boolean(process.env.WATCH_MODE),
-    browsers: ['Chrome'],
+    browsers: ['Chrome_travis_ci'],
     singleRun: !Boolean(process.env.WATCH_MODE),
     concurrency: Infinity
-  }
-
-  if (process.env.TRAVIS) {
-    configuration.browsers = ['Chrome_travis_ci'];
   }
  
   config.set(configuration);
