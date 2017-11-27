@@ -9,7 +9,7 @@ import { isEmpty } from 'underscore';
 })
 export class AppComponent {
 
-  tasks: Array<Task> = [];
+  tasks: Task[] = [];
   currentTaskInTextInput: String;
 
   addNewtask (newTaskName: String) {
