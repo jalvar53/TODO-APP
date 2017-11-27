@@ -9,8 +9,8 @@ import { isEmpty } from 'underscore';
 })
 export class AppComponent {
 
-  activatedTasks: Array<Task> = [];
-  completedTasks: Array<Task> = [];
+  activatedTasks: Task[] = [];
+  completedTasks: Task[] = [];
   currentTaskInTextInput: String;
 
   addNewtask(newTaskName: String) {
