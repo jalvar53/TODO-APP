@@ -12,7 +12,12 @@ module.exports = function(config) {
     customLaunchers: {
       Chrome_travis_ci: {
           base: 'Chrome',
-          flags: ['--no-sandbox']
+          flags: [
+            '--no-sandbox',
+            '--headless',
+            '--disable-gpu',
+            '--remote-debugging-port=9222'
+          ]
       }
     },
     reporters: ['progress'],
@@ -20,13 +25,9 @@ module.exports = function(config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: Boolean(process.env.WATCH_MODE),
-    browsers: ['Chrome'],
+    browsers: ['Chrome_travis_ci'],
     singleRun: !Boolean(process.env.WATCH_MODE),
     concurrency: Infinity
-  }
-
-  if (process.env.TRAVIS) {
-    configuration.browsers = ['Chrome_travis_ci'];
   }
  
   config.set(configuration);

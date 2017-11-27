@@ -2,6 +2,27 @@
     cursor: pointer;
 }
 
-.header {
+h1, h5 {
     color: #17845a;
+}
+
+.completed-tasks-container {
+  color: #17845a
+}
+
+.active-tasks-container {
+  color: #ff2828
+}
+
+.task {
+  color: #000000;
+}
+
+.spaced {
+  margin-left: 10px;
+}
+
+.button {
+  border-color: #17845a;
+  border-radius: 25px;
 }
