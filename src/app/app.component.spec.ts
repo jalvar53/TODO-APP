@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed, ComponentFixtureAutoDetect } from '@angular/
 import { DebugElement } from '@angular/core/src/debug/debug_node';
 import { By } from '@angular/platform-browser';
 import { Task } from './model/task.model';
+import { FormsModule } from '@angular/forms';
 
 describe('AppComponent created correctly', () => {
 
@@ -14,6 +15,7 @@ describe('AppComponent created correctly', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [AppComponent],
+      imports: [FormsModule],
     });
 
     componentFixture = TestBed.createComponent(AppComponent);
@@ -23,9 +25,9 @@ describe('AppComponent created correctly', () => {
   describe('Given a main component', () => {
     describe('When creating the component', () => {
       it('Then, the TODO title have to be in the h1 element', () => {
-        debugElement = componentFixture.debugElement.query(By.css('h3'));
+        debugElement = componentFixture.debugElement.query(By.css('h1'));
         htmlElement = debugElement.nativeElement;
-        expect(htmlElement.textContent).toContain('TODO App');
+        expect(htmlElement.textContent).toContain('TODOS');
       });
     });
   });
