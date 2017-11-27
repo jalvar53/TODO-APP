@@ -1,8 +1,16 @@
 language: node_js
 node_js:
-  - "lts/*"
+- lts/*
 before_install:
-  - export CHROME_BIN=chromium-browser
+- export CHROME_BIN=chromium-browser
 cache:
   directories:
-    - "node_modules"
+  - node_modules
+deploy:
+  provider: heroku
+  api_key:
+    secure: aDAkJzX9oriswyblFxp052UuiD2IHxweQcaqwNr8AZS/3rrxKJpfpR5d/Sunq2q9FawPr5gcoRTznLV8BKuMp/onFJ4YtedBl1GLPT8d8VBubfvi84vNQpJ5PKZD40FH4j+3nKYkqxrHp9fAtygasYiGTu+MU1kbDk225LMmZ9KMaFm7T6efmEyloPs6vl9yMGH1i1MAAvxf7e7+9VyivS6Z6oRyK+RtkdD2MBm7CZQMuGb5q8T+Rc2fqewc0CaPY7uPmGqXHs6nY6ulgCOevSjMVOx7Kr6Q2pm/tSCK0LYDtwn0vUHSCC8kmkN7dmEsUGCd/7UBFcdz9ZgOoUuc6ssf9yR0I6mouckmZO8dt8apGhnrY8Xo7ZQO/9/DZXt/kKvPBSnrgMBHuFBp83XCo9eZvXFrwkNVTo5uK5HNFXjGl7hZBydHshH607o5MEt5byyHuocPMheJO2NpZ3M1KOeu/V716PNL92Z5ZgFTcJkbZF2k1j7BBMLUy4mnUnGobTGgZKjwdmZ00ZBi7zVMKyYHOEkNMrmip7Z2AF/hn3o7v4yUEV9CmYX+P/qqajDG2Xe7dMNiVyIh7TGmS/ev71nl/GdkeDshS6PC7MViH+qDYT0YHkMZ423oT9+yumTDP3EhV05E/3SqsLWpOgVtpJdtC9XbXkLXe5+AgZHubcA=
+  on: master 
+  run:
+    - "npm install"
+    - "npm start"
