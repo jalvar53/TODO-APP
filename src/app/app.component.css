@@ -15,7 +15,7 @@ h1, h5 {
 }
 
 .task {
-  color: #000000;
+  color: #000;
 }
 
 .spaced {
@@ -25,4 +25,24 @@ h1, h5 {
 .button {
   border-color: #17845a;
   border-radius: 25px;
+}
+
+.ref {
+  font-size: 11px;
+  color: #777;
+  float: right;
+  font-style: italic;
+}
+
+.ref:hover {
+  text-decoration: underline;
+}
+
+.city-name {
+  color: #000;
+}
+
+.city-name:hover {
+  color: #17845a;
+  text-decoration: underline;
 }
