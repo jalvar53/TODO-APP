@@ -33,7 +33,7 @@ export class AppComponent implements OnInit{
 
   getCityWeatherAsync(): void {
     this.weatherService.getCityWeather()
-    .subscribe((weatherData) => {
+    .subscribe((weatherData: any) => {
       this.weather = weatherData;
       this.dataLoaded = true;
       this.newCityIdEntered = false;

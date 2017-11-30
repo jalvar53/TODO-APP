@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 
 
@@ -12,9 +12,11 @@ export class WeatherService {
   constructor(private http: HttpClient) { }
 
   getCityWeather() {
-    return this.http.get('http://api.openweathermap.org/data/2.5/weather?id=' +
-      this.cityId + '&APPID=' + this.apiKey + '&units=metric')
-      .map((response) => {
+    const urlParams = { id: this.cityId.toString(),
+      APPID: this.apiKey.toString(),
+      units: 'metric' };
+    return this.http.get('http://api.openweathermap.org/data/2.5/weather', { params: urlParams })
+      .map((response: any) => {
         return response;
       });
   }
