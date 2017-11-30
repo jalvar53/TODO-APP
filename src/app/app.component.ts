@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewChecked } from '@angular/core';
 import { Task } from './model/task.model';
 import { isEmpty } from 'underscore';
 import { WeatherService } from './services/weather.service';
@@ -9,7 +9,7 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css'],
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit, AfterViewChecked {
 
   weather: Object;
   activatedTasks: Task[] = [];
