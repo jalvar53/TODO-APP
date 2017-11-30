@@ -17,10 +17,10 @@ export class WeatherService {
     const urlParams = { q: this.cityName,
       APPID: environment.apiKey,
       units: 'metric' };
-    return this.http.get('http://api.openweathermap.org/data/2.5/weather', { params: urlParams })
+    return this.http.get(environment.apiUrl, { params: urlParams })
       .map((response: Object) => {
-          const weatherData = new Weather(response);
-          return weatherData;
+        const weatherData = new Weather(response);
+        return weatherData;
       });
   }
 

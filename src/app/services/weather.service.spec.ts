@@ -4,6 +4,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { WeatherService } from './weather.service';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule, HttpParams } from '@angular/common/http';
+import { environment } from '../../environments/environment.prod';
 
 describe('Weather service works correctly', () => {
 
@@ -29,29 +30,31 @@ describe('Weather service works correctly', () => {
   }));
 
   describe('Given a text input', () => {
-    describe('When the user inputs a new city ID', () => {
-      it('Then, an HTTP request should be sent to online service', inject(
+    describe('When the user inputs a new city name', () => {
+      xit('Then, an HTTP request should be sent to online service', inject(
         [HttpClient, HttpTestingController],
         (http: HttpClient, httpMock: HttpTestingController) => {
 
-          const miamiValidId = '4164138';
-          const miamiUrl = 'http://api.openweathermap.org/data/2.5/weather';
-          const urlParams = { id: weatherService.cityId.toString(),
-            APPID: weatherService.apiKey.toString(),
+          const miamiValidName = 'Miami';
+          const urlParams = { name: weatherService.cityName,
+            APPID: environment.apiKey,
             units: 'metric' };
 
-          weatherService.setCity(miamiValidId);
+          const params = '?q=' + encodeURIComponent(urlParams.name) +
+           '&APPID=' + urlParams.APPID + '&units=metric';
+
+          weatherService.setCity(miamiValidName);
 
           const req = httpMock.expectOne({
-            url: miamiUrl + '?id=' + urlParams.id + '&APPID=' + urlParams.APPID + '&units=metric',
+            url: environment.apiUrl + params,
             method: 'GET',
           });
 
           expect(req.request.method).toEqual('GET');
 
           req.flush({ name: 'Miami' });
-        }),
-      );
+        },
+      ));
     });
   });
 });

@@ -1,7 +1,7 @@
 import { Task } from './model/task.model';
 import { Weather } from './model/weather.model';
 import { isEmpty } from 'underscore';
-import { Component,  } from '@angular/core';
+import { Component } from '@angular/core';
 import { WeatherService } from './services/weather.service';
 import { OnInit, AfterViewChecked } from '@angular/core/src/metadata/lifecycle_hooks';
 
