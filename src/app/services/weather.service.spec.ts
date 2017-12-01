@@ -59,8 +59,8 @@ describe('Weather service works correctly', () => {
             APPID: environment.apiKey,
             units: 'metric' };
 
-          const params = '?q=' + encodeURIComponent(urlParams.name) +
-           '&APPID=' + urlParams.APPID + '&units=metric';
+          const params =
+          `?q=${encodeURIComponent(urlParams.name)}&APPID=${urlParams.APPID}&units=metric`;
 
           const req = httpMock.expectOne({
             url: environment.apiUrl + params,
