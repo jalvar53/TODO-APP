@@ -39,8 +39,7 @@
             </table>
             <div class="col s12 card white">
                 <div class="card-content">
-                    <input [(ngModel)]="newCity"
-                        class="input-field" 
+                    <input class="input-field" 
                         #city (keyup.enter)="setCityWeather(city.value)"
                         placeholder="New city..."  
                         type="text" 
