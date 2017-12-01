@@ -12,7 +12,6 @@ describe('Weather service works correctly', () => {
   let weatherService: WeatherService;
   let component: AppComponent;
   let componentFixture: ComponentFixture<AppComponent>;
-  const apiKey = '5eb804daafdf06e0b7045f443ecf9e2a';
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -23,6 +22,26 @@ describe('Weather service works correctly', () => {
     componentFixture = TestBed.createComponent(AppComponent);
     component = componentFixture.componentInstance;
     weatherService = componentFixture.debugElement.injector.get(WeatherService);
+    component.weatherInformation = new Weather({
+      coord: {
+        lon: 145.77,
+        lat: -16.92,
+      },
+      weather:[{
+        main: 'Sunny',
+        description: 'Clear',
+      }],
+      main:{
+        temp: 300.25,
+        pressure: 1019,
+        humidity: 83,
+      },
+      wind:{
+        speed: 1.1,
+      },
+      id: '3451190',
+      name:'Rio de Janeiro',
+    });
     componentFixture.detectChanges();
   }));
 
@@ -36,16 +55,12 @@ describe('Weather service works correctly', () => {
         [HttpClient, HttpTestingController],
         (http: HttpClient, httpMock: HttpTestingController) => {
 
-          const miamiValidName = 'Miami';
-
-          const urlParams = { name: weatherService.cityName,
+          const urlParams = { name: component.weatherInformation.city,
             APPID: environment.apiKey,
             units: 'metric' };
 
           const params = '?q=' + encodeURIComponent(urlParams.name) +
            '&APPID=' + urlParams.APPID + '&units=metric';
-
-          weatherService.setCity(miamiValidName);
 
           const req = httpMock.expectOne({
             url: environment.apiUrl + params,
@@ -71,6 +86,7 @@ describe('Weather service works correctly', () => {
             wind:{
               speed: 5.1,
             },
+            id: '2172797',
             name:'Cairns',
           });
         },

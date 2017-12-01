@@ -1,5 +1,6 @@
 export class Weather {
 
+  id: string;
   city: string;
   lat: string;
   lon: string;
@@ -10,6 +11,7 @@ export class Weather {
   temp: string;
 
   constructor(response: any) {
+    this.id = response.id;
     this.city = response.name;
     this.lat = response.coord.lat;
     this.lon = response.coord.lon;

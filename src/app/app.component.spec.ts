@@ -6,6 +6,7 @@ import { Task } from './model/task.model';
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { WeatherService } from './services/weather.service';
+import { Weather } from './model/weather.model';
 
 describe('AppComponent created correctly', () => {
 
@@ -23,6 +24,26 @@ describe('AppComponent created correctly', () => {
 
     componentFixture = TestBed.createComponent(AppComponent);
     component = componentFixture.componentInstance;
+    component.weatherInformation = new Weather({
+      coord: {
+        lon: 145.77,
+        lat: -16.92,
+      },
+      weather:[{
+        main: 'Sunny',
+        description: 'Clear',
+      }],
+      main:{
+        temp: 300.25,
+        pressure: 1019,
+        humidity: 83,
+      },
+      wind:{
+        speed: 1.1,
+      },
+      id: '3451190',
+      name:'Rio de Janeiro',
+    });
   });
 
   describe('Given a text input', () => {

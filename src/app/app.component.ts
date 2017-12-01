@@ -10,42 +10,25 @@ import { OnInit, AfterViewChecked } from '@angular/core/src/metadata/lifecycle_h
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css'],
 })
-export class AppComponent implements OnInit, AfterViewChecked {
+export class AppComponent implements OnInit {
 
   weatherInformation: Weather;
   activatedTasks: Task[] = [];
   completedTasks: Task[] = [];
-  currentTaskInTextInput: string;
-  newCity: string;
-  dataLoaded: boolean = false;
-  newCityIdEntered: boolean;
+  currentTaskInTextInput: string = '';
 
   constructor(private weatherService: WeatherService) { }
 
   ngOnInit(): void {
-    this.setCityWeather();
+    const initialCity: string = 'Rio de Janeiro';
+    this.setCityWeather(initialCity);
   }
 
-  ngAfterViewChecked(): void {
-    if (this.newCityIdEntered) {
-      this.setCityWeather();
-    }
-  }
-
-  setCityWeather(): void {
-    this.weatherService.fetchCityWeather()
+  setCityWeather(newCity : string): void {
+    this.weatherService.fetchCityWeather(newCity)
     .subscribe((weather: Weather) => {
       this.weatherInformation = weather;
-      this.dataLoaded = true;
-      this.newCityIdEntered = false;
     });
-  }
-
-  setNewCity(city: string): void {
-    this.newCity = city;
-    this.weatherService.setCity(city);
-    this.newCity = '';
-    this.newCityIdEntered = true;
   }
 
   addNewtask(newTaskName: string): void {

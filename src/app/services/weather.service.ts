@@ -9,23 +9,19 @@ import { environment } from '../../environments/environment';
 @Injectable()
 export class WeatherService {
 
-  cityName: string = 'Rio de Janeiro';
-
   constructor(private http: HttpClient) { }
 
-  fetchCityWeather(): Observable<any> {
-    const urlParams = { q: this.cityName,
+  fetchCityWeather(cityName : string): Observable<Weather> {
+    const urlParams = {
+      q: cityName,
       APPID: environment.apiKey,
-      units: 'metric' };
+      units: 'metric',
+    };
     return this.http.get(environment.apiUrl, { params: urlParams })
-      .map((response: Object) => {
+      .map((response: any) => {
         const weatherData = new Weather(response);
         return weatherData;
       });
-  }
-
-  setCity(newCity: string): void {
-    this.cityName = newCity;
   }
 
 }

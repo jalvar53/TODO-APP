@@ -4,11 +4,11 @@
     </div>
     <div class="row">
         <div class="col s3">
-            <table *ngIf="dataLoaded" class="striped">
+            <table class="striped">
                 <tbody>
                     <thead>
                         <tr>
-                            <th><a class="city-name" href="https://openweathermap.org/city/weatherService.cityId">{{weatherInformation.city}}</a></th>
+                            <th><a class="city-name" href="https://openweathermap.org/city/{{weatherInformation.id}}">{{weatherInformation.city}}</a></th>
                         </tr>
                     </thead>
                     <tr>
@@ -41,7 +41,7 @@
                 <div class="card-content">
                     <input [(ngModel)]="newCity"
                         class="input-field" 
-                        #city (keyup.enter)="setNewCity(city.value)"
+                        #city (keyup.enter)="setCityWeather(city.value)"
                         placeholder="New city..."  
                         type="text" 
                         ngModel>
