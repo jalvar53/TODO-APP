@@ -5,6 +5,7 @@ import { WeatherService } from './weather.service';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment.prod';
+import { Weather } from '../model/weather.model';
 
 describe('Weather service works correctly', () => {
 
@@ -31,11 +32,12 @@ describe('Weather service works correctly', () => {
 
   describe('Given a text input', () => {
     describe('When the user inputs a new city name', () => {
-      xit('Then, an HTTP request should be sent to online service', inject(
+      it('Then, an HTTP request should be sent to online service', inject(
         [HttpClient, HttpTestingController],
         (http: HttpClient, httpMock: HttpTestingController) => {
 
           const miamiValidName = 'Miami';
+
           const urlParams = { name: weatherService.cityName,
             APPID: environment.apiKey,
             units: 'metric' };
@@ -52,7 +54,25 @@ describe('Weather service works correctly', () => {
 
           expect(req.request.method).toEqual('GET');
 
-          req.flush({ name: 'Miami' });
+          req.flush({
+            coord: {
+              lon: 145.77,
+              lat: -16.92,
+            },
+            weather:[{
+              main: 'Clouds',
+              description: 'broken clouds',
+            }],
+            main:{
+              temp: 293.25,
+              pressure: 1019,
+              humidity: 83,
+            },
+            wind:{
+              speed: 5.1,
+            },
+            name:'Cairns',
+          });
         },
       ));
     });
