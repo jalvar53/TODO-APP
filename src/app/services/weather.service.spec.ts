@@ -1,9 +1,9 @@
-import { TestBed, ComponentFixture, async, fakeAsync, tick, inject } from '@angular/core/testing';
+import { TestBed, ComponentFixture, async, inject } from '@angular/core/testing';
 import { AppComponent } from '../app.component';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { WeatherService } from './weather.service';
 import { FormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { environment } from '../../environments/environment.prod';
 import { Weather } from '../model/weather.model';
 
