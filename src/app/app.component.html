@@ -3,6 +3,50 @@
         <h1 class="center-align header">TODOS</h1>
     </div>
     <div class="row">
+        <div class="col s3">
+            <table class="striped">
+                <tbody>
+                    <thead>
+                        <tr>
+                            <th><a class="city-name" href="https://openweathermap.org/city/{{weatherInformation.id}}">{{weatherInformation.city}}</a></th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>Wind</td>
+                        <td>{{weatherInformation.windSpeed}} m/s</td>
+                    </tr>
+                    <tr>
+                        <td>Cloudiness</td>
+                        <td>{{weatherInformation.cloudiness}}</td>
+                    </tr>
+                    <tr>
+                        <td>Pressure</td>
+                        <td>{{weatherInformation.pressure}} hpa</td>
+                    </tr>
+                    <tr>
+                        <td>Humidity</td>
+                        <td>{{weatherInformation.humidity}}% </td>
+                    </tr>
+                    <tr>
+                        <td>Temperature</td>
+                        <td>{{weatherInformation.temp}} °C</td>
+                    </tr>
+                    <tr>
+                        <td>Geocoords</td>
+                        <td>[{{weatherInformation.lat}}. {{weatherInformation.lon}}]</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="col s12 card white">
+                <div class="card-content">
+                    <input class="input-field" 
+                        #city (keyup.enter)="setCityWeather(city.value)"
+                        placeholder="New city..."  
+                        type="text" 
+                        ngModel>
+                </div>
+            </div>
+        </div>
         <div class="col s6 offset-s3 card white">
             <div class="card-content">
                 <input [(ngModel)]="currentTaskInTextInput"
@@ -11,16 +55,12 @@
                     placeholder="Add a new task..."  
                     type="text" 
                     ngModel>
-            </div>
+            </div>            
         </div>
-    </div>
-    <div class="row">
-            <div class="col s6 offset-s3">
-                <h5>Active</h5>
-            </div>
+        <div class="col s6 offset-s6">
+            <h5>Active</h5>
         </div>
-    <div class="row">
-        <div class="col s6 offset-s3">
+        <div class="col s6 offset-s6">
             <ul class="collection">
                 <li class="collection-item active-tasks-container" 
                 *ngFor="let task of activatedTasks">{{task.name}}
@@ -33,14 +73,10 @@
                 </li>
             </ul>
         </div>
-    </div>
-    <div class="row">
-        <div class="col s6 offset-s3">
+        <div class="col s6 offset-s6">
             <h5>Completed</h5>
         </div>
-    </div>
-    <div class="row">
-        <div class="col s6 offset-s3">
+        <div class="col s6 offset-s6">
             <ul class="collection">
                 <li class="collection-item completed-tasks-container" *ngFor="let completedTask of completedTasks">
                     {{completedTask.name}} <a class="secondary-content clickable">

@@ -4,31 +4,45 @@ import { DebugElement } from '@angular/core/src/debug/debug_node';
 import { By } from '@angular/platform-browser';
 import { Task } from './model/task.model';
 import { FormsModule } from '@angular/forms';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { WeatherService } from './services/weather.service';
+import { Weather } from './model/weather.model';
 
 describe('AppComponent created correctly', () => {
 
   let component: AppComponent;
   let componentFixture: ComponentFixture<AppComponent>;
   let debugElement: DebugElement;
-  let htmlElement: HTMLElement;
+  const htmlElement: HTMLElement = null;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [AppComponent],
-      imports: [FormsModule],
+      imports: [FormsModule, HttpClientTestingModule],
+      providers: [WeatherService],
     });
 
     componentFixture = TestBed.createComponent(AppComponent);
     component = componentFixture.componentInstance;
-  });
-
-  describe('Given a main component', () => {
-    describe('When creating the component', () => {
-      it('Then, the TODO title have to be in the h1 element', () => {
-        debugElement = componentFixture.debugElement.query(By.css('h1'));
-        htmlElement = debugElement.nativeElement;
-        expect(htmlElement.textContent).toContain('TODOS');
-      });
+    component.weatherInformation = new Weather({
+      coord: {
+        lon: 145.77,
+        lat: -16.92,
+      },
+      weather:[{
+        main: 'Sunny',
+        description: 'Clear',
+      }],
+      main:{
+        temp: 300.25,
+        pressure: 1019,
+        humidity: 83,
+      },
+      wind:{
+        speed: 1.1,
+      },
+      id: '3451190',
+      name:'Rio de Janeiro',
     });
   });
 

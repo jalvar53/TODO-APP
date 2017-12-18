@@ -1,9 +1,9 @@
 export class Task {
 
-  constructor(public name: String,
-              private status: String) { }
+  constructor(public name: string,
+              private status: string) { }
 
-  setStatus(newStatus: String) {
+  setStatus(newStatus: string) {
     this.status = newStatus;
   }
 

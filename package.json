@@ -8,6 +8,7 @@
     "start": "node server.js",
     "pretest": "npm run lint",
     "test": "ng test",
+    "test:debug":  "ng test -sm=false",
     "test:watch": "WATCH_MODE=true npm test",
     "build": "ng build",
     "lint": "ng lint",
